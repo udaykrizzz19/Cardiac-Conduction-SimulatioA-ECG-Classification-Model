@@ -1,0 +1,282 @@
+{% extends 'index.html' %}
+
+{% block navbar %}
+    <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('home')}}">Home</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('about')}}">About</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link active" href="{{url_for('upload')}}">Upload</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('index')}}">Logout</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+<style>
+    .glass-card {
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 100%;
+        min-height: 350px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        margin: 20px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .glass-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 200%;
+        height: 100%;
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05)
+        );
+        transform: rotate(5deg);
+        pointer-events: none;
+    }
+    
+    .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .glass-card {
+        margin: 500px 0;
+    }
+    
+    .upload-title {
+        color: #ff4400;
+        font-weight: bold;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+    }
+    
+    .submit-btn {
+        background-color: rgba(0, 123, 255, 0.8);
+        color: white !important;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin-top: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.9rem;
+        backdrop-filter: blur(5px);
+    }
+    
+    .submit-btn:hover {
+        background-color: rgba(255, 140, 0, 0.9);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+    }
+    
+    .form-control:focus {
+        border-color: #ff4400;
+        box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.25);
+    }
+    
+    .file-input {
+        background-color: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 8px;
+        color: white;
+    }
+    
+    .drop-area {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 2px dashed rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 30px 20px;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 20px 0;
+    }
+    
+    .drop-area.highlight {
+        background-color: rgba(255, 140, 0, 0.1);
+        border-color: rgba(255, 140, 0, 0.4);
+    }
+    
+    .drop-area .icon {
+        font-size: 40px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 10px;
+    }
+    
+    .drop-area p {
+        margin: 10px 0 0;
+    }
+    
+    .drop-area .file-info {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .prediction-container {
+        margin: 20px 0;
+    }
+    
+    .prediction-image {
+        border-radius: 12px;
+        margin: 15px 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .prediction-text {
+        color: #ff4400;
+        font-weight: 600;
+    }
+    
+    .confidence-text {
+        color: white;
+        font-weight: 600;
+    }
+    
+    .info-text {
+        color: rgb(255, 255, 255);
+        line-height: 1.6;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="col-lg-5 col-md-7 col-sm-9 col-11 mx-auto">
+    <div class="glass-card">
+        <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data" class="contact-form text-center" role="form">
+            <h2 class="upload-title">Upload Image</h2>
+
+            {% if prediction %}
+            <div class="prediction-container">
+                <h3 class="prediction-text">Predicted ECG: <span>{{prediction}}</span></h3>
+                <h3 class="confidence-text">Percentage Rate: <span>{{confidence}}</span></h3>
+                <h5 class="info-text">Relevant Information: <span>{{suggestion}}</span></h5>
+                <img src="/{{path}}" class="prediction-image" alt="ECG Image" style="max-width: 300px;">
+            </div>
+            {% endif %}
+            
+            <div class="mt-4">
+                <div class="drop-area" id="drop-area">
+                    
+                    <p class="file-info">Drag & drop or click to select a file</p>
+                    <input type="file" name="file" id="fileInput" class="form-control file-input" style="display: none;" required>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-12 mx-auto mt-4">
+                <button type="submit" class="form-control submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('fileInput');
+        const fileInfo = dropArea.querySelector('.file-info');
+        
+        // Open file browser when clicking the drop area
+        dropArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        // File input change event
+        fileInput.addEventListener('change', function() {
+            updateFileInfo(this.files);
+        });
+        
+        // Prevent default behavior for drag events
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        // Highlight drop area when dragging over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropArea.classList.add('highlight');
+        }
+        
+        function unhighlight() {
+            dropArea.classList.remove('highlight');
+        }
+        
+        // Handle dropped files
+        dropArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            fileInput.files = files;
+            updateFileInfo(files);
+        }
+        
+        function updateFileInfo(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                fileInfo.textContent = `Selected: ${file.name} (${formatFileSize(file.size)})`;
+                
+                // Preview image if it's an image file
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // You can add image preview here if needed
+                    }
+                    reader.readAsDataURL(file);
+                }
+            } else {
+                fileInfo.textContent = 'No file selected';
+            }
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes < 1024) {
+                return bytes + ' bytes';
+            } else if (bytes < 1048576) {
+                return (bytes / 1024).toFixed(1) + ' KB';
+            } else {
+                return (bytes / 1048576).toFixed(1) + ' MB';
+            }
+        }
+    });
+</script>
+{% endblock %}
