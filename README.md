@@ -19,8 +19,6 @@ A web-based platform that uses a hybrid deep learning model to classify realisti
 * [Results](#-results)
 * [Setup and Installation](#-setup-and-installation)
 * [Future Enhancements](#-future-enhancements)
-* [Result analysis](#-screenshots)
-* [License](#-license)
 
 ---
 
@@ -137,15 +135,4 @@ To run this project locally, follow these steps:
 - **Model Explainability**: Incorporate techniques like LIME or SHAP to provide visual explanations for model predictions, increasing trust and interpretability for clinicians.
 - **Deployment to Cloud**: Package the application in a Docker container and deploy it to a cloud platform like AWS, Azure, or Heroku for wider accessibility.
 
-## 📈 Graphical Analysis
-
-Here’s a glimpse of the application's interface.
-
-| Login Page | User Dashboard |
-| :---: | :---: |
-| <img src="https://i.imgur.com/G4P4GzU.png" width="400"> | <img src="https://i.imgur.com/vHqA8wQ.png" width="400"> |
-| **Result: Myocardial Infarction** | **Result: Abnormal Heartbeat** |
-| <img src="https://i.imgur.com/3y7UuE3.png" width="400"> | <img src="https://i.imgur.com/1E6bL0F.png" width="400"> |
-
-*Note: You can replace the placeholder images above by uploading your own screenshots to your repository and updating the `src` links.*
 
