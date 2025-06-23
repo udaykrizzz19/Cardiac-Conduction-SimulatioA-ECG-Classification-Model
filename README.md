@@ -149,6 +149,3 @@ Here’s a glimpse of the application's interface.
 
 *Note: You can replace the placeholder images above by uploading your own screenshots to your repository and updating the `src` links.*
 
-## 📜 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
