@@ -73,7 +73,7 @@ The project follows a structured machine learning workflow:
 
 ## 📊 Results
 
-The comparative analysis revealed that the **hybrid MobileNet + LSTM model** outperformed the other models.
+The comparative analysis revealed that the **hybrid MobileNet + LSTM model** outperformed the other models with ~ **92.8%**
 
 - **MobileNet (Validation Accuracy): ~89.78%**
 - **DenseNet (Validation Accuracy): ~84.41%**
