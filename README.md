@@ -1,6 +1,4 @@
-Of course. Here is the complete Markdown code for your README.md file.
 
-Generated markdown
 # Cardiac Conduction Simulation: A Hybrid Deep Learning Approach
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -15,14 +13,13 @@ A web-based platform that uses a hybrid deep learning model to classify realisti
 ## 📖 Table of Contents
 * [Overview](#-overview)
 * [Key Features](#-key-features)
-* [Screenshots](#-screenshots)
 * [System Architecture](#-system-architecture)
 * [Technology Stack](#-technology-stack)
 * [Methodology](#-methodology)
 * [Results](#-results)
 * [Setup and Installation](#-setup-and-installation)
 * [Future Enhancements](#-future-enhancements)
-* [Contributors](#-contributors)
+* [Result analysis](#-screenshots)
 * [License](#-license)
 
 ---
@@ -47,26 +44,11 @@ The hybrid MobileNet+LSTM model, which leverages MobileNet for spatial feature e
 - **User-Friendly Web Interface**: A clean and simple web application built with Flask for easy interaction.
 - **Secure User Authentication**: System includes user registration and login functionality.
 
-## 📸 Screenshots
 
-Here’s a glimpse of the application's interface.
-
-| Login Page | User Dashboard |
-| :---: | :---: |
-| <img src="https://i.imgur.com/G4P4GzU.png" width="400"> | <img src="https://i.imgur.com/vHqA8wQ.png" width="400"> |
-| **Result: Myocardial Infarction** | **Result: Abnormal Heartbeat** |
-| <img src="https://i.imgur.com/3y7UuE3.png" width="400"> | <img src="https://i.imgur.com/1E6bL0F.png" width="400"> |
-
-*Note: You can replace the placeholder images above by uploading your own screenshots to your repository and updating the `src` links.*
 
 ## 🏗️ System Architecture
 
 The system is designed with a clear separation between the user, the web application, and the backend machine learning model.
-
-<img src="https://i.imgur.com/dK3f8i4.png" alt="System Architecture">
-
----
-
 ## 🛠️ Technology Stack
 
 This project is built with a modern and robust technology stack:
@@ -155,18 +137,17 @@ To run this project locally, follow these steps:
 - **Model Explainability**: Incorporate techniques like LIME or SHAP to provide visual explanations for model predictions, increasing trust and interpretability for clinicians.
 - **Deployment to Cloud**: Package the application in a Docker container and deploy it to a cloud platform like AWS, Azure, or Heroku for wider accessibility.
 
-## 🧑‍💻 Contributors
+## 📸 Screenshots
 
-This project was developed by:
+Here’s a glimpse of the application's interface.
 
-- **Uday Krishna.B** ([GitHub Profile](https://github.com/udaykrishnab))
-- **Krishna Bogineni** ([GitHub Profile](https://github.com/krishnabogineni))
-- **Sashank Kakarla** ([GitHub Profile](https://github.com/sashankkakarla))
-- **Sankar Masana** ([GitHub Profile](https://github.com/sankarmasana))
+| Login Page | User Dashboard |
+| :---: | :---: |
+| <img src="https://i.imgur.com/G4P4GzU.png" width="400"> | <img src="https://i.imgur.com/vHqA8wQ.png" width="400"> |
+| **Result: Myocardial Infarction** | **Result: Abnormal Heartbeat** |
+| <img src="https://i.imgur.com/3y7UuE3.png" width="400"> | <img src="https://i.imgur.com/1E6bL0F.png" width="400"> |
 
-Under the guidance of **Dr. Gangireddy Salla**.
-
-*(Note: Replace the GitHub profile links with your actual profiles.)*
+*Note: You can replace the placeholder images above by uploading your own screenshots to your repository and updating the `src` links.*
 
 ## 📜 License
 
