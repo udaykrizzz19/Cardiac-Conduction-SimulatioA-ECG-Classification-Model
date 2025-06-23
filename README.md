@@ -137,7 +137,7 @@ To run this project locally, follow these steps:
 - **Model Explainability**: Incorporate techniques like LIME or SHAP to provide visual explanations for model predictions, increasing trust and interpretability for clinicians.
 - **Deployment to Cloud**: Package the application in a Docker container and deploy it to a cloud platform like AWS, Azure, or Heroku for wider accessibility.
 
-## 📸 Screenshots
+## 📈 Graphical Analysis
 
 Here’s a glimpse of the application's interface.
 
